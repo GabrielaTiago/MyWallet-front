@@ -26,6 +26,7 @@ export default function SignUp() {
                     placeholder="Confirme a senha"
                     required
                 />
+                <button type="submit">Cadastrar</button>
             </form>
         </Container>
     );
@@ -47,16 +48,26 @@ const Container = styled.div`
         gap: 13px;
     }
 
-    input{
+    input, button {
         width: 100%;
         height: 58px;
-        background-color: #FFFFFF;
         border-radius: 5px;
         font-family: "Raleway";
         font-weight: 400;
         font-size: 20px;
         line-height: 23px;
+        border: none;
+    }
+    
+    input {
+        background-color: #FFFFFF;
         color: #000000;
         padding-left: 15px;
+    }
+
+    button {
+        color: #FFFFFF;
+        background-color: #A328D6;
+        font-weight: 700;
     }
 `
