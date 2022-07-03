@@ -1,8 +1,10 @@
 import styled from "styled-components";
+import Title from "../../Components/Title";
 
 export default function SignUp() {
     return (
         <Container>
+            <Title />
             <form>
                 <input
                     type="text"
