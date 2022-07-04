@@ -1,10 +1,10 @@
 import axios from "axios";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import AuthContext from "../../Contexts/AuthContext";
 
-export default function NewEntry({listOfTransactions, setListOfTransactions}) {
+export default function NewEntry() {
     const [amout, setAmout] = useState("");
     const [description, setDescription] = useState("");
     const { user } = useContext(AuthContext);
@@ -17,7 +17,6 @@ export default function NewEntry({listOfTransactions, setListOfTransactions}) {
         const promise = axios.post("http://localhost:5001/transactions", { amout, description, status: "IN" }, config);
 
         promise.then((res) => {
-            setListOfTransactions(...listOfTransactions, res.data);
             navigate("/personal-wallet");
         });
 

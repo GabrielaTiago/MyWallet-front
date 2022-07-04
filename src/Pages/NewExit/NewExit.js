@@ -4,7 +4,7 @@ import styled from "styled-components";
 export default function NewExit() {
     return(
         <Container>
-            <h2>Nova saída</h2>
+            <h2>Nova entrada</h2>
             <form>
                 <input type="text" placeholder="Valor" required/>
                 <input type="text" placeholder="Descrição" required/>
