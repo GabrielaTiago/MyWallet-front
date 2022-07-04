@@ -1,14 +1,14 @@
 import styled from "styled-components";
 
 
-export default function NewEntry() {
+export default function NewExit() {
     return(
         <Container>
-            <h2>Nova entrada</h2>
+            <h2>Nova saída</h2>
             <form>
                 <input type="text" placeholder="Valor" required/>
                 <input type="text" placeholder="Descrição" required/>
-                <button type="submit">Salvar Entrada</button>
+                <button type="submit">Salvar Saída</button>
             </form>
         </Container>
     );
@@ -56,6 +56,5 @@ const Container = styled.div`
         line-height: 23px;
         border-radius: 5px;
         border: none;
-
     }
 `

@@ -18,7 +18,7 @@ export default function PersonalWallet() {
                     <ion-icon name="add-circle-outline"></ion-icon>
                     <h5>Nova entrada</h5>
                 </button>
-                <button>
+                <button onClick={() => navigate("/new-exit")}>
                     <ion-icon name="remove-circle-outline"></ion-icon>
                     <h5>Nova saída</h5>
                 </button>
