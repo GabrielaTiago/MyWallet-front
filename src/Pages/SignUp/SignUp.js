@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useState } from "react";
-import {Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import Title from "../../Components/Title";
 
@@ -75,6 +75,7 @@ const Container = styled.div`
         display: flex;
         flex-direction: column;
         gap: 13px;
+        margin: 28px auto 32px;
     }
 
     input, button {
@@ -101,7 +102,6 @@ const Container = styled.div`
     }
 
     p {
-        margin-top: 32px;
         color: #FFFFFF;
         font-family: "Raleway";
         font-weight: 700;

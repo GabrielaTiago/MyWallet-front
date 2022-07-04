@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 import Title from "../../Components/Title";
 
@@ -18,6 +19,9 @@ export default function SignIn() {
                 />
                 <button type="submit">Entrar</button>
             </form>
+            <Link to="/sign-up">
+                <p>Primeira vez? Cadastre-se!</p>
+            </Link>
         </Container>
     );
 }
@@ -36,6 +40,7 @@ const Container = styled.div`
         display: flex;
         flex-direction: column;
         gap: 13px;
+        margin: 24px auto 36px;
     }
 
     input, button {
@@ -61,4 +66,11 @@ const Container = styled.div`
         font-weight: 700;
     }
 
+    p {
+        color: #FFFFFF;
+        font-family: "Raleway";
+        font-weight: 700;
+        font-size: 15px;
+        line-height: 18px;
+    }
 `
