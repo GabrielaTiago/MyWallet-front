@@ -14,7 +14,7 @@ export default function SignUp() {
     function handleSignUp(event) {
         event.preventDefault();
 
-        const promise = axios.post("http://localhost:5000/sign-up", { name, email, password, confirmPassword });
+        const promise = axios.post("http://localhost:5001/sign-up", { name, email, password, confirmPassword });
 
         promise.then(() => navigate("/sign-in"));
         promise.catch((res) => alert(`${res.response.data.message}`))

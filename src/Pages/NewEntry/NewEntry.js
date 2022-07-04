@@ -1,13 +1,47 @@
+import axios from "axios";
+import { useContext, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
+import AuthContext from "../../Contexts/AuthContext";
 
+export default function NewEntry({listOfTransactions, setListOfTransactions}) {
+    const [amout, setAmout] = useState("");
+    const [description, setDescription] = useState("");
+    const { user } = useContext(AuthContext);
+    const navigate = useNavigate();
 
-export default function NewEntry() {
-    return(
+    function handleNewEntry(event) {
+        event.preventDefault();
+
+        const config = { headers: { Authorization: `Bearer ${user.token}` } };
+        const promise = axios.post("http://localhost:5001/transactions", { amout, description, status: "IN" }, config);
+
+        promise.then((res) => {
+            setListOfTransactions(...listOfTransactions, res.data);
+            navigate("/personal-wallet");
+        });
+
+        promise.catch((res) => alert(res.response.data.message));
+    }
+
+    return (
         <Container>
             <h2>Nova entrada</h2>
-            <form>
-                <input type="text" placeholder="Valor" required/>
-                <input type="text" placeholder="Descrição" required/>
+            <form onSubmit={handleNewEntry}>
+                <input
+                    type="text"
+                    placeholder="Valor"
+                    value={amout}
+                    onChange={e => setAmout(e.target.value)}
+                    required
+                />
+                <input
+                    type="text"
+                    placeholder="Descrição"
+                    value={description}
+                    onChange={e => setDescription(e.target.value)}
+                    required
+                />
                 <button type="submit">Salvar Entrada</button>
             </form>
         </Container>
@@ -56,6 +90,5 @@ const Container = styled.div`
         line-height: 23px;
         border-radius: 5px;
         border: none;
-
     }
 `
