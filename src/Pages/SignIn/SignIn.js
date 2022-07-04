@@ -6,15 +6,17 @@ export default function SignIn() {
     return (
         <Container>
             <Title />
-            <form>
+            <form onSubmit={handleSignIn}>
                 <input
-                    type="text"
+                    type="email"
                     placeholder="E-mail"
                     required
                 />
                 <input
                     type="password"
                     placeholder="Senha"
+                    value={password}
+                    onChange={e => setPassword(e.target.value)}
                     required
                 />
                 <button type="submit">Entrar</button>
