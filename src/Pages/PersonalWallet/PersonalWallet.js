@@ -1,17 +1,37 @@
-import { useState } from "react";
+import axios from "axios";
+import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
+import AuthContext from "../../Contexts/AuthContext";
 import Header from "../../Components/Header";
+import AllTransactions from "../../Components/AllTransactions"
 
 export default function PersonalWallet() {
     const [listOfTransactions, setListOfTransactions] = useState([]);
+    const { user } = useContext(AuthContext);
     const navigate = useNavigate();
+
+    function getTransactions() {
+        const config = { headers: { Authorization: `Bearer ${user.token}` } };
+        const promise = axios.get("http://localhost:5001/transactions", config);
+
+        promise.then((res) => {
+            setListOfTransactions(...res.data);
+        });
+
+        promise.catch((res) => alert(res.response.data.message));
+    }
+
+    useEffect(() => { getTransactions() }, []);
 
     return (
         <Container>
             <Header />
             <Main>
-                 <p>Não há registros de entrada ou saída</p>
+                {listOfTransactions !== 0
+                    ? <AllTransactions />
+                    :  <p>Não há registros de entrada ou saída</p> }
+                
             </Main>
             <footer>
                 <button onClick={() => navigate("/new-entry")}>
@@ -79,13 +99,16 @@ const Container = styled.div`
 `
 
 const Main = styled.main`
-    min-width: 100%;
-    min-height: 450px;
+    width: 96%;
     background-color: #FFFFFF;
     border-radius: 5px;
     display: flex;
     align-items: center;
     justify-content: center;
+    position: fixed;
+    top: 78px;
+    bottom:143px;
+    box-sizing: border-box;
 
     p {
         min-width: 180px;

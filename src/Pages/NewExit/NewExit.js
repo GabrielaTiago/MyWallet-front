@@ -1,13 +1,43 @@
+import axios from "axios";
+import { useContext, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
-
+import AuthContext from "../../Contexts/AuthContext";
 
 export default function NewExit() {
-    return(
+    const [amout, setAmout] = useState("");
+    const [description, setDescription] = useState("");
+    const { user } = useContext(AuthContext);
+    const navigate = useNavigate();
+
+    function handleNewExit(event) {
+        event.preventDefault();
+
+        const config = { headers: { Authorization: `Bearer ${user.token}` } };
+        const promise = axios.post("http://localhost:5001/transactions", { amout, description, status: "OUT" }, config);
+
+        promise.then((res) => {
+            navigate("/personal-wallet");
+        });
+
+        promise.catch((res) => alert(res.response.data.message));
+    }
+    return (
         <Container>
-            <h2>Nova entrada</h2>
-            <form>
-                <input type="text" placeholder="Valor" required/>
-                <input type="text" placeholder="Descrição" required/>
+            <h2>Nova saída</h2>
+            <form onSubmit={handleNewExit}>
+                <input
+                    type="text"
+                    placeholder="Valor"
+                    value={amout}
+                    onChange={e => setAmout(e.target.value)}
+                    required />
+                <input
+                    type="text"
+                    placeholder="Descrição"
+                    value={description}
+                    onChange={e => setDescription(e.target.value)}
+                    required />
                 <button type="submit">Salvar Saída</button>
             </form>
         </Container>
