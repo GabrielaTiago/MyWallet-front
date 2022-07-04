@@ -1,8 +1,29 @@
-import { Link } from "react-router-dom";
+import axios from "axios";
+import { useContext, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import AuthContext from "../../Contexts/AuthContext";
 import styled from "styled-components";
 import Title from "../../Components/Title";
 
 export default function SignIn() {
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const { setUser } = useContext(AuthContext);
+    const navigate = useNavigate();
+
+    function handleSignIn(event) {
+        event.preventDefault();
+
+        const promise = axios.post("http://localhost:5000/sign-in", { email, password });
+
+        promise.then((res) => {
+            setUser(res.data);
+            navigate("/personal-wallet")
+        });
+        promise.catch((res) =>
+            alert(`${res.response.data.message}`));
+    }
+
     return (
         <Container>
             <Title />
@@ -10,6 +31,8 @@ export default function SignIn() {
                 <input
                     type="email"
                     placeholder="E-mail"
+                    value={email}
+                    onChange={e => setEmail(e.target.value)}
                     required
                 />
                 <input
