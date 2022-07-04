@@ -1,29 +1,55 @@
+import axios from "axios";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import Title from "../../Components/Title";
 
 export default function SignUp() {
+    const [name, setName] = useState("");
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [confirmPassword, setConfirmPassword] = useState("");
+    const navigate = useNavigate();
+
+    function handleSignUp(event) {
+        event.preventDefault();
+
+        const promise = axios.post("http://localhost:5000/sign-up", { name, email, password, confirmPassword });
+
+        promise.then(() => navigate("/sign-in"));
+        promise.catch((res) => alert(`${res.response.data.message}`))
+    }
+
     return (
         <Container>
             <Title />
-            <form>
+            <form onSubmit={handleSignUp}>
                 <input
                     type="text"
                     placeholder="Nome"
+                    value={name}
+                    onChange={e => setName(e.target.value)}
                     required
                 />
                 <input
                     type="text"
                     placeholder="E-mail"
+                    value={email}
+                    onChange={e => setEmail(e.target.value)}
                     required
                 />
                 <input
                     type="password"
                     placeholder="Senha"
+                    value={password}
+                    onChange={e => setPassword(e.target.value)}
                     required
                 />
                 <input
                     type="password"
                     placeholder="Confirme a senha"
+                    value={confirmPassword}
+                    onChange={e => setConfirmPassword(e.target.value)}
                     required
                 />
                 <button type="submit">Cadastrar</button>
