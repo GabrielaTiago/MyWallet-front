@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import {Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import Title from "../../Components/Title";
 
@@ -54,6 +54,9 @@ export default function SignUp() {
                 />
                 <button type="submit">Cadastrar</button>
             </form>
+            <Link to="/sign-in">
+                <p>Já tem uma conta? Entre agora!</p>
+            </Link>
         </Container>
     );
 }
@@ -95,5 +98,14 @@ const Container = styled.div`
         color: #FFFFFF;
         background-color: #A328D6;
         font-weight: 700;
+    }
+
+    p {
+        margin-top: 32px;
+        color: #FFFFFF;
+        font-family: "Raleway";
+        font-weight: 700;
+        font-size: 15px;
+        line-height: 18px;
     }
 `
