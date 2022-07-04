@@ -1,10 +1,11 @@
 import { useState } from "react";
-import { Component } from "react/cjs/react.development";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import Header from "../../Components/Header";
 
 export default function PersonalWallet() {
     const [listOfTransactions, setListOfTransactions] = useState([]);
+    const navigate = useNavigate();
 
     return (
         <Container>
@@ -13,7 +14,7 @@ export default function PersonalWallet() {
                  <p>Não há registros de entrada ou saída</p>
             </Main>
             <footer>
-                <button>
+                <button onClick={() => navigate("/new-entry")}>
                     <ion-icon name="add-circle-outline"></ion-icon>
                     <h5>Nova entrada</h5>
                 </button>
@@ -79,7 +80,7 @@ const Container = styled.div`
 
 const Main = styled.main`
     min-width: 100%;
-    height: 550px;
+    min-height: 450px;
     background-color: #FFFFFF;
     border-radius: 5px;
     display: flex;
