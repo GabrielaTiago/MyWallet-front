@@ -20,6 +20,7 @@ export default function SignIn() {
             setUser(res.data);
             navigate("/personal-wallet")
         });
+        
         promise.catch((res) =>
             alert(`${res.response.data.message}`));
     }
