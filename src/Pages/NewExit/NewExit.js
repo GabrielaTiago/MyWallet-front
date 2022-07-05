@@ -14,7 +14,7 @@ export default function NewExit() {
         event.preventDefault();
 
         const config = { headers: { Authorization: `Bearer ${user.token}` } };
-        const promise = axios.post("http://localhost:5001/transactions", { amout, description, status: "OUT" }, config);
+        const promise = axios.post("https://git.heroku.com/mywallet-api-backend.git/transactions", { amout, description, status: "OUT" }, config);
 
         promise.then((res) => {
             navigate("/personal-wallet");

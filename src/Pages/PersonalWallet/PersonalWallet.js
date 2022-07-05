@@ -13,7 +13,7 @@ export default function PersonalWallet() {
 
     function getTransactions() {
         const config = { headers: { Authorization: `Bearer ${user.token}` } };
-        const promise = axios.get("http://localhost:5001/transactions", config);
+        const promise = axios.get("https://git.heroku.com/mywallet-api-backend.git/transactions", config);
 
         promise.then((res) => {
             setListOfTransactions(...res.data);

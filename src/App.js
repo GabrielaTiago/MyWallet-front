@@ -14,7 +14,7 @@ export default function App() {
         <AuthContext.Provider value={{user, setUser}}>
             <BrowserRouter>
                 <Routes>
-                    <Route path="/sign-in" element={<SignIn />}></Route>
+                    <Route path="/" element={<SignIn />}></Route>
                     <Route path="/sign-up" element={<SignUp />}></Route>
                     <Route path="/personal-wallet" element={<PersonalWallet />}></Route>
                     <Route path="/new-entry" element={<NewEntry/>}></Route>

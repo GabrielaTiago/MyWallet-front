@@ -14,7 +14,7 @@ export default function SignUp() {
     function handleSignUp(event) {
         event.preventDefault();
 
-        const promise = axios.post("http://localhost:5001/sign-up", { name, email, password, confirmPassword });
+        const promise = axios.post("https://git.heroku.com/mywallet-api-backend.git/sign-up", { name, email, password, confirmPassword });
 
         promise.then(() => navigate("/sign-in"));
         promise.catch((res) => alert(`${res.response.data.message}`))
@@ -54,7 +54,7 @@ export default function SignUp() {
                 />
                 <button type="submit">Cadastrar</button>
             </form>
-            <Link to="/sign-in">
+            <Link to="/">
                 <p>Já tem uma conta? Entre agora!</p>
             </Link>
         </Container>
