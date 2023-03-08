@@ -3,7 +3,7 @@ import { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import AuthContext from "../../Contexts/AuthContext";
 import styled from "styled-components";
-import Title from "../../Components/Title";
+import { Title } from "../../shared/components";
 
 export function SignIn() {
     const [email, setEmail] = useState("");

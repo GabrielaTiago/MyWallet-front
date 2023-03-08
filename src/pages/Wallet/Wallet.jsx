@@ -3,8 +3,8 @@ import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import AuthContext from "../../Contexts/AuthContext";
-import Header from "../../Components/Header";
-import AllTransactions from "../../Components/AllTransactions"
+import { AllTransactions, Header } from "../../shared/components";
+
 
 export function Wallet() {
     const [listOfTransactions, setListOfTransactions] = useState([]);

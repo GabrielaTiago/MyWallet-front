@@ -2,7 +2,7 @@ import axios from "axios";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import Title from "../../Components/Title";
+import { Title } from "../../shared/components";
 
 export function SignUp() {
     const [name, setName] = useState("");
