@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export default function Title() {
+export function Title() {
     return (
         <Heading>MyWallet</Heading>
     );

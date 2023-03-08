@@ -2,19 +2,19 @@ import axios from "axios";
 import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import AuthContext from "../../Contexts/AuthContext";
+import AuthContext from "../../shared/contexts/AuthContext";
 
-export default function NewExit() {
+export function Income() {
     const [amout, setAmout] = useState("");
     const [description, setDescription] = useState("");
     const { user } = useContext(AuthContext);
     const navigate = useNavigate();
 
-    function handleNewExit(event) {
+    function handleNewEntry(event) {
         event.preventDefault();
 
         const config = { headers: { Authorization: `Bearer ${user.token}` } };
-        const promise = axios.post("https://git.heroku.com/mywallet-api-backend.git/transactions", { amout, description, status: "OUT" }, config);
+        const promise = axios.post("https://git.heroku.com/mywallet-api-backend.git/transactions", { amout, description, status: "IN" }, config);
 
         promise.then((res) => {
             navigate("/personal-wallet");
@@ -22,23 +22,26 @@ export default function NewExit() {
 
         promise.catch((res) => alert(res.response.data.message));
     }
+
     return (
         <Container>
-            <h2>Nova saída</h2>
-            <form onSubmit={handleNewExit}>
+            <h2>Nova entrada</h2>
+            <form onSubmit={handleNewEntry}>
                 <input
                     type="text"
                     placeholder="Valor"
                     value={amout}
                     onChange={e => setAmout(e.target.value)}
-                    required />
+                    required
+                />
                 <input
                     type="text"
                     placeholder="Descrição"
                     value={description}
                     onChange={e => setDescription(e.target.value)}
-                    required />
-                <button type="submit">Salvar Saída</button>
+                    required
+                />
+                <button type="submit">Salvar Entrada</button>
             </form>
         </Container>
     );

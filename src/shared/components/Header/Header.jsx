@@ -1,8 +1,9 @@
 import styled from "styled-components";
 import { useContext } from "react";
-import AuthContext from "../Contexts/AuthContext";
+import AuthContext from "../../contexts/AuthContext";
 
-export default function Header() {
+
+export function Header() {
     const { user } = useContext(AuthContext);
     return (
         <Container>

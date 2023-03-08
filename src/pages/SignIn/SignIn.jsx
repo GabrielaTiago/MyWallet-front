@@ -1,11 +1,11 @@
 import axios from "axios";
 import { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import AuthContext from "../../Contexts/AuthContext";
+import AuthContext from "../../shared/contexts/AuthContext";
 import styled from "styled-components";
-import Title from "../../Components/Title";
+import { Title } from "../../shared/components";
 
-export default function SignIn() {
+export function SignIn() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const { setUser } = useContext(AuthContext);

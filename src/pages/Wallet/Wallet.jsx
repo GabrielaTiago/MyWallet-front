@@ -2,11 +2,11 @@ import axios from "axios";
 import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import AuthContext from "../../Contexts/AuthContext";
-import Header from "../../Components/Header";
-import AllTransactions from "../../Components/AllTransactions"
+import AuthContext from "../../shared/contexts/AuthContext";
+import { AllTransactions, Header } from "../../shared/components";
 
-export default function PersonalWallet() {
+
+export function Wallet() {
     const [listOfTransactions, setListOfTransactions] = useState([]);
     const { user } = useContext(AuthContext);
     const navigate = useNavigate();
