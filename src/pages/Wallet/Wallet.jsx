@@ -6,7 +6,7 @@ import AuthContext from "../../Contexts/AuthContext";
 import Header from "../../Components/Header";
 import AllTransactions from "../../Components/AllTransactions"
 
-export default function PersonalWallet() {
+export function Wallet() {
     const [listOfTransactions, setListOfTransactions] = useState([]);
     const { user } = useContext(AuthContext);
     const navigate = useNavigate();

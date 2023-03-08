@@ -5,7 +5,7 @@ import AuthContext from "../../Contexts/AuthContext";
 import styled from "styled-components";
 import Title from "../../Components/Title";
 
-export default function SignIn() {
+export function SignIn() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const { setUser } = useContext(AuthContext);

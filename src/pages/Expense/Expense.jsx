@@ -4,17 +4,17 @@ import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import AuthContext from "../../Contexts/AuthContext";
 
-export default function NewEntry() {
+export function Expense() {
     const [amout, setAmout] = useState("");
     const [description, setDescription] = useState("");
     const { user } = useContext(AuthContext);
     const navigate = useNavigate();
 
-    function handleNewEntry(event) {
+    function handleNewExit(event) {
         event.preventDefault();
 
         const config = { headers: { Authorization: `Bearer ${user.token}` } };
-        const promise = axios.post("https://git.heroku.com/mywallet-api-backend.git/transactions", { amout, description, status: "IN" }, config);
+        const promise = axios.post("https://git.heroku.com/mywallet-api-backend.git/transactions", { amout, description, status: "OUT" }, config);
 
         promise.then((res) => {
             navigate("/personal-wallet");
@@ -22,26 +22,23 @@ export default function NewEntry() {
 
         promise.catch((res) => alert(res.response.data.message));
     }
-
     return (
         <Container>
-            <h2>Nova entrada</h2>
-            <form onSubmit={handleNewEntry}>
+            <h2>Nova saída</h2>
+            <form onSubmit={handleNewExit}>
                 <input
                     type="text"
                     placeholder="Valor"
                     value={amout}
                     onChange={e => setAmout(e.target.value)}
-                    required
-                />
+                    required />
                 <input
                     type="text"
                     placeholder="Descrição"
                     value={description}
                     onChange={e => setDescription(e.target.value)}
-                    required
-                />
-                <button type="submit">Salvar Entrada</button>
+                    required />
+                <button type="submit">Salvar Saída</button>
             </form>
         </Container>
     );
