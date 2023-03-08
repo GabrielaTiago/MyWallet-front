@@ -2,7 +2,7 @@ import axios from "axios";
 import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import AuthContext from "../../Contexts/AuthContext";
+import AuthContext from "../../shared/contexts/AuthContext";
 import { AllTransactions, Header } from "../../shared/components";
 
 

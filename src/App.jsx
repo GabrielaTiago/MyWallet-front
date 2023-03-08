@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { BrowserRouter } from "react-router-dom";
-import AuthContext from "./Contexts/AuthContext";
+import AuthContext from "./shared/contexts/AuthContext";
 import { AppRoutes } from "./routes";
 
 export default function App() {

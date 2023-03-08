@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import AuthContext from "../../Contexts/AuthContext";
+import AuthContext from "../../shared/contexts/AuthContext";
 import styled from "styled-components";
 import { Title } from "../../shared/components";
 
