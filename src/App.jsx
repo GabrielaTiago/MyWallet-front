@@ -1,16 +1,13 @@
-import { useState } from "react";
 import { BrowserRouter } from "react-router-dom";
-import AuthContext from "./shared/contexts/AuthContext";
 import { AppRoutes } from "./routes";
+import { UserContextProvider } from "./shared/contexts";
 
 export default function App() {
-  const [user, setUser] = useState([]);
-
   return (
-    <AuthContext.Provider value={{ user, setUser }}>
+    <UserContextProvider>
       <BrowserRouter>
         <AppRoutes />
       </BrowserRouter>
-    </AuthContext.Provider>
+    </UserContextProvider>
   );
 }

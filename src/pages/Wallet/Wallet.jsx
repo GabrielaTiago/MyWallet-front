@@ -1,14 +1,14 @@
-import { useCallback, useContext, useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import AuthContext from "../../shared/contexts/AuthContext";
+import { useUserContext } from "../../shared/contexts";
 import { AllTransactions, Header } from "../../shared/components";
 import { getTransactions } from "../../shared/services";
 
 export function Wallet() {
   const [listOfTransactions, setListOfTransactions] = useState([]);
   const [balanceValue, setBalanceValue] = useState({});
-  const { user } = useContext(AuthContext);
+  const { user } = useUserContext();
   const navigate = useNavigate();
 
   const fetchTransactions = useCallback(async () => {

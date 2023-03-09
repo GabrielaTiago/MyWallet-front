@@ -1,14 +1,14 @@
-import { useContext, useState } from "react";
+import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import AuthContext from "../../shared/contexts/AuthContext";
 import styled from "styled-components";
+import { useUserContext } from "../../shared/contexts";
 import { Title } from "../../shared/components";
 import { signIn } from "../../shared/services";
 
 export function SignIn() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const { setUser } = useContext(AuthContext);
+  const { setUser } = useUserContext();
   const navigate = useNavigate();
 
   function handleSignIn(event) {
@@ -19,8 +19,9 @@ export function SignIn() {
   async function signInUser() {
     try {
       const response = await signIn({ email, password });
-      setUser(response.token);
-      navigate("/wallet")
+      console.log(response);
+      setUser(response);
+      navigate("/wallet");
     } catch (err) {
       alert(`${err.data}`);
     }
