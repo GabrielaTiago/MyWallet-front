@@ -6,9 +6,9 @@ export function AppRoutes() {
     <Routes>
       <Route path="/" element={<SignIn />}></Route>
       <Route path="/sign-up" element={<SignUp />}></Route>
-      <Route path="/personal-wallet" element={<Wallet />}></Route>
-      <Route path="/new-entry" element={<Income />}></Route>
-      <Route path="/new-exit" element={<Expense />}></Route>
+      <Route path="/wallet" element={<Wallet />}></Route>
+      <Route path="/income" element={<Income />}></Route>
+      <Route path="/expense" element={<Expense />}></Route>
       <Route path="*" element={<Navigate to={"/"} />} />
     </Routes>
   );
