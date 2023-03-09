@@ -1,13 +1,13 @@
-import { useContext, useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import AuthContext from "../../shared/contexts/AuthContext";
+import { useUserContext } from "../../shared/contexts";
 import { createTransaction } from "../../shared/services";
 
 export function Income() {
   const [amount, setAmount] = useState("");
   const [description, setDescription] = useState("");
-  const { user } = useContext(AuthContext);
+  const { user } = useUserContext();
   const navigate = useNavigate();
 
   function handleSubmit(e) {
