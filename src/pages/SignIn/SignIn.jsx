@@ -1,8 +1,8 @@
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import styled from "styled-components";
+import { useNavigate } from "react-router-dom";
 import { useUserContext } from "../../shared/contexts";
-import { Title } from "../../shared/components";
+import { Button, GoTo, Title } from "../../shared/components";
+import { AuthWrapper, FormWrapper } from "../../shared/layout";
 import { signIn } from "../../shared/services";
 
 export function SignIn() {
@@ -19,7 +19,6 @@ export function SignIn() {
   async function signInUser() {
     try {
       const response = await signIn({ email, password });
-      console.log(response);
       setUser(response);
       navigate("/wallet");
     } catch (err) {
@@ -28,78 +27,30 @@ export function SignIn() {
   }
 
   return (
-    <Container>
+    <AuthWrapper>
       <Title />
-      <form onSubmit={handleSignIn}>
-        <input
-          type="email"
-          placeholder="E-mail"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          required
-        />
-        <input
-          type="password"
-          placeholder="Senha"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-        />
-        <button type="submit">Entrar</button>
-      </form>
-      <Link to="/sign-up">
-        <p>Primeira vez? Cadastre-se!</p>
-      </Link>
-    </Container>
+
+      <FormWrapper>
+        <form onSubmit={handleSignIn}>
+          <input
+            type="email"
+            placeholder="E-mail"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+          />
+          <input
+            type="password"
+            placeholder="Senha"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+          />
+          <Button type="submit" disabled={false} text="Entrar" />
+        </form>
+      </FormWrapper>
+
+      <GoTo to="/sign-up" text="Primeira vez? Cadastre-se!" />
+    </AuthWrapper>
   );
 }
-
-const Container = styled.div`
-  width: 100%;
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-
-  form {
-    width: 326px;
-    height: auto;
-    display: flex;
-    flex-direction: column;
-    gap: 13px;
-    margin: 24px auto 36px;
-  }
-
-  input,
-  button {
-    width: 100%;
-    height: 58px;
-    border-radius: 5px;
-    font-family: "Raleway";
-    font-weight: 400;
-    font-size: 20px;
-    line-height: 23px;
-    border: none;
-  }
-
-  input {
-    background-color: #ffffff;
-    color: #000000;
-    padding-left: 15px;
-  }
-
-  button {
-    color: #ffffff;
-    background-color: #a328d6;
-    font-weight: 700;
-  }
-
-  p {
-    color: #ffffff;
-    font-family: "Raleway";
-    font-weight: 700;
-    font-size: 15px;
-    line-height: 18px;
-  }
-`;
