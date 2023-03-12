@@ -39,4 +39,7 @@ const Container = styled.div`
       pointer-events: none;
     }
   }
+  .input-error {
+    outline: 1px solid rgb(255, 72, 72);
+  }
 `;
