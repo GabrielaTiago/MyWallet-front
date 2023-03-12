@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from "react";
-import { fire } from "sweetalert2";
+import Swal from "sweetalert2";
 import { Container, Balance, Text, Total, NoContent } from "./styles";
 import { useUserContext } from "../../contexts";
 import { Transaction } from "../../components";
@@ -21,7 +21,7 @@ export function AllTransactions() {
       setListOfTransactions([...transactions]);
       setBalanceValue(balance);
     } catch (err) {
-      fire({
+      Swal.fire({
         icon: "error",
         title: "Oops...",
         text: `${err.data}`,
