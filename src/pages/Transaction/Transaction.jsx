@@ -4,7 +4,7 @@ import Swal from "sweetalert2";
 import { useUserContext } from "../../shared/contexts";
 import { Button, ErrorMessage, PageTitle } from "../../shared/components";
 import { FormWrapper, TransactionsWrapper } from "../../shared/layout";
-import { createTransaction } from "../../shared/services";
+import { createTransaction, updateTransaction } from "../../shared/services";
 
 export function Transaction() {
   const {
@@ -12,21 +12,22 @@ export function Transaction() {
   } = useUserContext();
   const navigate = useNavigate();
   const {
-    state: { type, page },
+    state: { type, page, transactionId },
   } = useLocation();
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
+
   const PROPS = {
     title: {
-      income: { create: "Nova entrada" },
-      expense: { create: "Nova saída" },
+      income: { create: "Nova entrada", edit: "Editar entrada" },
+      expense: { create: "Nova saída", edit: "Editar saída" },
     },
     button: {
-      income: { create: "Salvar entrada" },
-      expense: { create: "Salvar saída" },
+      income: { create: "Salvar entrada", edit: "Atualizar entrada" },
+      expense: { create: "Salvar saída", edit: "Atualizar saída" },
     },
   };
 
@@ -36,12 +37,25 @@ export function Transaction() {
 
   async function fetchTransaction({ amount, description }) {
     try {
-      await createTransaction({ amount, description, type }, token);
-      Swal.fire({
-        icon: "success",
-        title: "Transação criada com sucesso!",
-        confirmButtonColor: "#8c17be",
-      });
+      if (page === "create") {
+        await createTransaction({ amount, description, type }, token);
+        Swal.fire({
+          icon: "success",
+          title: "Transação criada com sucesso!",
+          confirmButtonColor: "#8c17be",
+        });
+      } else {
+        await updateTransaction(
+          { amount, description, type },
+          token,
+          transactionId
+        );
+        Swal.fire({
+          icon: "success",
+          title: "Transação editada com sucesso!",
+          confirmButtonColor: "#8c17be",
+        });
+      }
       navigate("/wallet");
     } catch (err) {
       Swal.fire({
