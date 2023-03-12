@@ -11,3 +11,7 @@ export function createTransaction(body, token) {
 export function updateTransaction(body, token, id) {
   return api.put(`/transactions/${id}`, body, token);
 }
+
+export function deleteTransaction(token, id) {
+  return api.delete(`/transactions/${id}`, null, token);
+}
