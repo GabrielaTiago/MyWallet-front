@@ -1,29 +1,42 @@
 import { useForm } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import { useUserContext } from "../../shared/contexts";
 import { Button, ErrorMessage, PageTitle } from "../../shared/components";
 import { FormWrapper, TransactionsWrapper } from "../../shared/layout";
 import { createTransaction } from "../../shared/services";
 
-export function Income() {
+export function Transaction() {
   const {
     user: { token },
   } = useUserContext();
   const navigate = useNavigate();
   const {
+    state: { type, page },
+  } = useLocation();
+  const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
-
-  const onSubmit = async (data) => {
-    await fetchIncome(data);
+  const PROPS = {
+    title: {
+      income: { create: "Nova entrada" },
+      expense: { create: "Nova saída" },
+    },
+    button: {
+      income: { create: "Salvar entrada" },
+      expense: { create: "Salvar saída" },
+    },
   };
 
-  async function fetchIncome({ amount, description }) {
+  const onSubmit = async (data) => {
+    await fetchTransaction(data);
+  };
+
+  async function fetchTransaction({ amount, description }) {
     try {
-      await createTransaction({ amount, description, type: "income" }, token);
+      await createTransaction({ amount, description, type }, token);
       Swal.fire({
         icon: "success",
         title: "Transação criada com sucesso!",
@@ -42,7 +55,7 @@ export function Income() {
 
   return (
     <TransactionsWrapper>
-      <PageTitle>Nova entrada</PageTitle>
+      <PageTitle>{PROPS.title[type][page]}</PageTitle>
       <FormWrapper>
         <form onSubmit={handleSubmit(onSubmit)}>
           <div>
@@ -73,7 +86,11 @@ export function Income() {
               <ErrorMessage message="O campo descrição é obrigatório" />
             )}
           </div>
-          <Button type="submit" disabled={false} text="Salvar Entrada" />
+          <Button
+            type="submit"
+            disabled={false}
+            text={PROPS.button[type][page]}
+          />
         </form>
       </FormWrapper>
     </TransactionsWrapper>

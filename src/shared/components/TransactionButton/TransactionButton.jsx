@@ -5,7 +5,7 @@ import {
 import { useNavigate } from "react-router-dom";
 import { ButtonBox } from "./styles";
 
-export function TransactionButton({ type }) {
+export function TransactionButton({ type, page }) {
   const navigate = useNavigate();
   const PROPS = {
     icon: {
@@ -17,9 +17,15 @@ export function TransactionButton({ type }) {
       expense: "Nova saída",
     },
   };
-  
+
   return (
-    <ButtonBox onClick={() => navigate(`/${type}`)}>
+    <ButtonBox
+      onClick={() =>
+        navigate("/transaction", {
+          state: { type, page },
+        })
+      }
+    >
       {PROPS.icon[type]}
       <h4>{PROPS.transaction[type]}</h4>
     </ButtonBox>
