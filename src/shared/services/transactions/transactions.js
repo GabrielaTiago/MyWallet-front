@@ -7,3 +7,7 @@ export function getTransactions(token) {
 export function createTransaction(body, token) {
   return api.post("/transactions", body, token);
 }
+
+export function updateTransaction(body, token, id) {
+  return api.put(`/transactions/${id}`, body, token);
+}

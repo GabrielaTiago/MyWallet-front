@@ -1,18 +1,37 @@
-import { Amount, Container, Day, Description } from "./styles";
+import { useNavigate } from "react-router-dom";
+import {
+  Amount,
+  Container,
+  Day,
+  Description,
+  LeftBox,
+  RightBox,
+} from "./styles";
 
 export function Transaction({ transaction }) {
-  const { day, amount, description, type } = transaction;
+  const { _id, day, amount, description, type } = transaction;
+  const navigate = useNavigate();
   let positive = false;
 
-  if (type === "income") positive = true;
+  if (type === "income") positive = !positive;
+
+  const goToEdition = () => {
+    navigate("/transaction", {
+      state: { type, page: "edit", transactionId: _id },
+    });
+  };
 
   return (
     <Container>
-      <span>
+      <RightBox onClick={goToEdition}>
         <Day>{day}</Day>
         <Description>{description}</Description>
-      </span>
-      <Amount positive={positive}>{amount}</Amount>
+      </RightBox>
+      <LeftBox>
+        <Amount positive={positive} onClick={goToEdition}>
+          {amount}
+        </Amount>
+      </LeftBox>
     </Container>
   );
 }
