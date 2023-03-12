@@ -2,14 +2,14 @@ import styled from "styled-components";
 
 const Container = styled.main`
   width: 100%;
-  height: 100%;
-  padding: 2%;
+  max-height: 100%;
+  padding-top: 2%;
   background-color: #ffffff;
   border-radius: 5px;
   display: flex;
   flex-direction: column;
-  gap: 5px;
-  position: relative;
+  gap: 8px;
+  overflow-y: scroll;
 `;
 
 const NoContent = styled.div`
@@ -24,20 +24,17 @@ const NoContent = styled.div`
 
 const Balance = styled.div`
   width: 100%;
-  height: 25px;
-  padding: 0 5px;
+  padding: 1% 2% 1% 2%;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  position: absolute;
+  position: sticky;
   bottom: 0;
   left: 0;
-  z-index: 2;
   background-color: #ffffff;
   border-radius: 5px;
   font-size: 17px;
-  line-height: 20px;
 `;
 
 const Text = styled.div`
