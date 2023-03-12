@@ -6,11 +6,12 @@ const Container = styled.header`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  color: #ffffff;
 
-  ion-icon {
+  svg {
     width: 23px;
     height: 24px;
-    color: #ffffff;
+    cursor: pointer;
   }
 `;
 
