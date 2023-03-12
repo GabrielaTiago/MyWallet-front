@@ -1,30 +1,42 @@
-import { useState } from "react";
+import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
-import { Button, PageTitle } from "../../shared/components";
+import Swal from "sweetalert2";
 import { useUserContext } from "../../shared/contexts";
+import { Button, ErrorMessage, PageTitle } from "../../shared/components";
 import { FormWrapper, TransactionsWrapper } from "../../shared/layout";
 import { createTransaction } from "../../shared/services";
 
 export function Income() {
-  const [amount, setAmount] = useState("");
-  const [description, setDescription] = useState("");
-  const { user } = useUserContext();
+  const {
+    user: { token },
+  } = useUserContext();
   const navigate = useNavigate();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
 
-  function handleSubmit(e) {
-    e.preventDefault();
-    fetchIncome();
-  }
+  const onSubmit = async (data) => {
+    await fetchIncome(data);
+  };
 
-  async function fetchIncome() {
+  async function fetchIncome({ amount, description }) {
     try {
-      await createTransaction(
-        { amount, description, type: "income" },
-        user.token
-      );
+      await createTransaction({ amount, description, type: "income" }, token);
+      Swal.fire({
+        icon: "success",
+        title: "Transação criada com sucesso!",
+        confirmButtonColor: "#8c17be",
+      });
       navigate("/wallet");
     } catch (err) {
-      alert(`${err.data}`);
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: `${err.data}`,
+        confirmButtonColor: "#8c17be",
+      });
     }
   }
 
@@ -32,21 +44,35 @@ export function Income() {
     <TransactionsWrapper>
       <PageTitle>Nova entrada</PageTitle>
       <FormWrapper>
-        <form onSubmit={handleSubmit}>
-          <input
-            type="text"
-            placeholder="Valor"
-            value={amount}
-            onChange={(e) => setAmount(e.target.value)}
-            required
-          />
-          <input
-            type="text"
-            placeholder="Descrição"
-            value={description}
-            onChange={(e) => setDescription(e.target.value)}
-            required
-          />
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <div>
+            <input
+              className={errors?.amount && "input-error"}
+              type="text"
+              placeholder="Valor"
+              {...register("amount", {
+                required: true,
+                pattern: /^\d{1,3}(?:[.,]?\d{3})*(?:[.,]\d{2})?$/,
+              })}
+            />
+            {errors?.amount?.type === "required" && (
+              <ErrorMessage message="O campo valor é obrigatório" />
+            )}
+            {errors?.amount?.type === "pattern" && (
+              <ErrorMessage message="Apenas números são permitidos. exemplo: 1.234,56" />
+            )}
+          </div>
+          <div>
+            <input
+              className={errors?.description && "input-error"}
+              type="text"
+              placeholder="Descrição"
+              {...register("description", { required: true })}
+            />
+            {errors?.description?.type === "required" && (
+              <ErrorMessage message="O campo descrição é obrigatório" />
+            )}
+          </div>
           <Button type="submit" disabled={false} text="Salvar Entrada" />
         </form>
       </FormWrapper>
