@@ -11,6 +11,7 @@ import {
 } from "./styles";
 import { useUserContext } from "../../contexts";
 import { deleteTransaction } from "../../services";
+import { formatMoney } from "../../utils";
 
 export function Transaction({ transaction }) {
   const { _id, day, amount, description, type } = transaction;
@@ -67,7 +68,7 @@ export function Transaction({ transaction }) {
       </RightBox>
       <LeftBox>
         <Amount positive={positive} onClick={goToEdition}>
-          {amount}
+          {formatMoney(amount)}
         </Amount>
         <AiOutlineClose onClick={deleteUserTransaction} />
       </LeftBox>

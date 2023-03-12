@@ -4,6 +4,7 @@ import { Container, Balance, Text, Total, NoContent } from "./styles";
 import { useUserContext } from "../../contexts";
 import { Transaction } from "../../components";
 import { getTransactions } from "../../services";
+import { formatMoney } from "../../utils";
 
 export function AllTransactions() {
   const [listOfTransactions, setListOfTransactions] = useState([]);
@@ -48,7 +49,7 @@ export function AllTransactions() {
           })}
           <Balance>
             <Text>SALDO</Text>
-            <Total positive={positive}>{balanceValue}</Total>
+            <Total positive={positive}>{formatMoney(balanceValue)}</Total>
           </Balance>
         </>
       )}
