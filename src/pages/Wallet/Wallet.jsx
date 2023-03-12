@@ -36,8 +36,8 @@ export function Wallet() {
         balance={balanceValue}
       />
       <footer>
-        <TransactionButton type="income" />
-        <TransactionButton type="expense" />
+        <TransactionButton type="income" page="create" />
+        <TransactionButton type="expense" page="create" />
       </footer>
     </WalletWrapper>
   );
