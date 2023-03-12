@@ -13,6 +13,8 @@ const Container = styled.main`
   gap: 20px;
 
   @media (min-width: 539px) {
-    text-align: center;
+    h2 {
+      text-align: center;
+    }
   }
 `;
