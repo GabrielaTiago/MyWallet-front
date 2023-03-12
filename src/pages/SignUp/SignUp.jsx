@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
@@ -7,6 +8,7 @@ import { AuthWrapper, FormWrapper } from "../../shared/layout";
 import { signUp } from "../../shared/services";
 
 export function SignUp() {
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const {
     register,
@@ -23,6 +25,7 @@ export function SignUp() {
 
   async function signUpUser({ name, email, password, confirmPassword }) {
     try {
+      setLoading(!loading);
       await signUp({ name, email, password, confirmPassword });
       Swal.fire({
         icon: "success",
@@ -37,6 +40,8 @@ export function SignUp() {
         text: `${err.data}`,
         confirmButtonColor: "#8c17be",
       });
+    } finally {
+      setLoading(false);
     }
   }
 
@@ -51,6 +56,7 @@ export function SignUp() {
               type="text"
               placeholder="Nome"
               {...register("name", { required: true })}
+              disabled={loading}
             />
             {errors?.name?.type === "required" && (
               <ErrorMessage message="O campo nome é obrigatório" />
@@ -65,6 +71,7 @@ export function SignUp() {
                 required: true,
                 validate: (value) => isEmail(value),
               })}
+              disabled={loading}
             />
             {errors?.email?.type === "required" && (
               <ErrorMessage message="O campo email é obrigatório" />
@@ -82,6 +89,7 @@ export function SignUp() {
                 required: true,
                 pattern: /^(?=.*\d)(?=.*\W+)(?=.*[A-Z])(?=.*[a-z])[^.\n]{8,}$/,
               })}
+              disabled={loading}
             />
             {errors?.password?.type === "required" && (
               <ErrorMessage message="O campo senha é obrigatório" />
@@ -99,6 +107,7 @@ export function SignUp() {
                 required: true,
                 validate: (value) => value === matchPassword,
               })}
+              disabled={loading}
             />
             {errors?.confirmPassword?.type === "required" && (
               <ErrorMessage message="O campo confirmação de senha é obrigatório" />
@@ -107,7 +116,7 @@ export function SignUp() {
               <ErrorMessage message="As senhas não são iguais" />
             )}
           </div>
-          <Button type="submit" disabled={false} text="Cadastrar" />
+          <Button type="submit" disabled={loading} text="Cadastrar" />
         </form>
       </FormWrapper>
       <GoTo to="/" text="Já tem uma conta? Entre agora!" />
