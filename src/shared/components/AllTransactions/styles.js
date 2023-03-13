@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 const Container = styled.main`
   width: 100%;
-  max-height: 100%;
+  height: 100%;
   padding-top: 2%;
   background-color: #ffffff;
   border-radius: 5px;
@@ -10,6 +10,14 @@ const Container = styled.main`
   flex-direction: column;
   gap: 8px;
   overflow-y: scroll;
+  overflow-x: hidden;
+  &::-webkit-scrollbar {
+    width: 5px;
+    border-radius: 5px;
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color:  #a328d6;;
+  }
 `;
 
 const NoContent = styled.div`
