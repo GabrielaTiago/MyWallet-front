@@ -1,6 +1,13 @@
 import { useCallback, useEffect, useState } from "react";
 import Swal from "sweetalert2";
-import { Container, Balance, Text, Total, NoContent } from "./styles";
+import {
+  Container,
+  Balance,
+  Text,
+  Total,
+  NoContent,
+  Transactions,
+} from "./styles";
 import { useUserContext } from "../../contexts";
 import { Transaction } from "../../components";
 import { getTransactions } from "../../services";
@@ -43,10 +50,12 @@ export function AllTransactions() {
         <NoContent>Não há registros de entrada ou saída</NoContent>
       ) : (
         <>
-          {listOfTransactions.map((transaction) => {
-            const { _id } = transaction;
-            return <Transaction key={_id} transaction={transaction} />;
-          })}
+          <Transactions>
+            {listOfTransactions.map((transaction) => {
+              const { _id } = transaction;
+              return <Transaction key={_id} transaction={transaction} />;
+            })}
+          </Transactions>
           <Balance>
             <Text>SALDO</Text>
             <Total positive={positive}>{formatMoney(balanceValue)}</Total>
