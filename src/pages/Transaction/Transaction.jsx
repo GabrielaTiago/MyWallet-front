@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useLocation, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
@@ -7,6 +8,7 @@ import { FormWrapper, TransactionsWrapper } from "../../shared/layout";
 import { createTransaction, updateTransaction } from "../../shared/services";
 
 export function Transaction() {
+  const [loading, setLoading] = useState(false);
   const {
     user: { token },
   } = useUserContext();
@@ -37,6 +39,7 @@ export function Transaction() {
 
   async function fetchTransaction({ amount, description }) {
     try {
+      setLoading(!loading);
       if (page === "create") {
         await createTransaction({ amount, description, type }, token);
         Swal.fire({
@@ -64,6 +67,8 @@ export function Transaction() {
         text: `${err.data}`,
         confirmButtonColor: "#8c17be",
       });
+    } finally {
+      setLoading(false);
     }
   }
 
@@ -81,6 +86,7 @@ export function Transaction() {
                 required: true,
                 pattern: /^\d{1,3}(?:[.,]?\d{3})*(?:[.,]\d{2})?$/,
               })}
+              disabled={loading}
             />
             {errors?.amount?.type === "required" && (
               <ErrorMessage message="O campo valor é obrigatório" />
@@ -95,6 +101,7 @@ export function Transaction() {
               type="text"
               placeholder="Descrição"
               {...register("description", { required: true })}
+              disabled={loading}
             />
             {errors?.description?.type === "required" && (
               <ErrorMessage message="O campo descrição é obrigatório" />

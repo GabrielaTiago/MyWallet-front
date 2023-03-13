@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
@@ -8,6 +9,7 @@ import { AuthWrapper, FormWrapper } from "../../shared/layout";
 import { signIn } from "../../shared/services";
 
 export function SignIn() {
+  const [loading, setLoading] = useState(false);
   const { setUser } = useUserContext();
   const navigate = useNavigate();
   const {
@@ -22,6 +24,7 @@ export function SignIn() {
 
   async function signInUser({ email, password }) {
     try {
+      setLoading(!loading);
       const response = await signIn({ email, password });
       setUser(response);
       Swal.fire({
@@ -37,6 +40,8 @@ export function SignIn() {
         text: `${err.data}`,
         confirmButtonColor: "#8c17be",
       });
+    } finally {
+      setLoading(false);
     }
   }
 
@@ -55,6 +60,7 @@ export function SignIn() {
                 required: true,
                 validate: (value) => isEmail(value),
               })}
+              disabled={loading}
             />
             {errors?.email?.type === "required" && (
               <ErrorMessage message="O campo email é obrigatório" />
@@ -70,13 +76,14 @@ export function SignIn() {
               type="password"
               placeholder="Senha"
               {...register("password", { required: true })}
+              disabled={loading}
             />
             {errors?.password?.type === "required" && (
               <ErrorMessage message="O campo senha é obrigatório" />
             )}
           </div>
 
-          <Button type="submit" disabled={false} text="Entrar" />
+          <Button type="submit" disabled={loading} text="Entrar" />
         </form>
       </FormWrapper>
 
