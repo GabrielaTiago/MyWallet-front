@@ -109,7 +109,7 @@ export function Transaction() {
           </div>
           <Button
             type="submit"
-            disabled={false}
+            disabled={loading}
             text={PROPS.button[type][page]}
           />
         </form>
