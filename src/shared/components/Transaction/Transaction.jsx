@@ -13,7 +13,7 @@ import { useUserContext } from "../../contexts";
 import { deleteTransaction } from "../../services";
 import { formatMoney } from "../../utils";
 
-export function Transaction({ transaction }) {
+export function Transaction({ transaction, fetchTransactions }) {
   const { _id, day, amount, description, type } = transaction;
   const {
     user: { token },
@@ -41,13 +41,23 @@ export function Transaction({ transaction }) {
       cancelButtonText: "Não, cancele!",
     }).then(async ({ isConfirmed, isDismissed }) => {
       if (isConfirmed) {
-        await deleteTransaction(token, _id);
-        Swal.fire({
-          icon: "success",
-          title: "Deletado!",
-          text: "Sua transação foi deletada.",
-          confirmButtonColor: "#8c17be",
-        });
+        try {
+          await deleteTransaction(token, _id);
+          fetchTransactions()
+          Swal.fire({
+            icon: "success",
+            title: "Deletado!",
+            text: "Sua transação foi deletada.",
+            confirmButtonColor: "#8c17be",
+          });
+        } catch (err) {
+          Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: `${err.data}`,
+            confirmButtonColor: "#8c17be",
+          });
+        }
       }
       if (isDismissed) {
         Swal.fire({

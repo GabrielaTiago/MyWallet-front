@@ -53,7 +53,13 @@ export function AllTransactions() {
           <Transactions>
             {listOfTransactions.map((transaction) => {
               const { _id } = transaction;
-              return <Transaction key={_id} transaction={transaction} />;
+              return (
+                <Transaction
+                  key={_id}
+                  transaction={transaction}
+                  fetchTransactions={fetchTransactions}
+                />
+              );
             })}
           </Transactions>
           <Balance>
