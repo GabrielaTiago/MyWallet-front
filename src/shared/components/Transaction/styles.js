@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 const Container = styled.div`
   width: 100%;
-  height: 25px;
+  min-height: 25px;
   padding: 0 2%;
   display: flex;
   align-items: center;
@@ -25,7 +25,7 @@ const Container = styled.div`
 `;
 
 const RightBox = styled.span`
-  width: 100%;
+  width: calc(100% - 90px);
 `;
 
 const LeftBox = styled.span`
@@ -41,7 +41,10 @@ const Day = styled.div`
 const Description = styled.div`
   height: 100%;
   color: #000000;
-  word-break: break-all;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  max-width: calc(100% - 50px); 
 `;
 
 const Amount = styled.div`
