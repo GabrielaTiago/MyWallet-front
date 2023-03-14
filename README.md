@@ -1,70 +1,103 @@
-# Getting Started with Create React App
+<p align="center"><img src="public/favicon.ico" height="80px"/></p>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# <p align="center">MyWallet</p>
 
-## Available Scripts
+#### <p align="center">Aplicação para registro financeiro</p>
 
-In the project directory, you can run:
+<p align="center">
+   <img src="https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB"  height="30px"/>
 
-### `npm start`
+   <img src="https://img.shields.io/badge/styled--components-DB7093?style=for-the-badge&logo=styled-components&logoColor=white"  height="30px"/>
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+   <img src="https://img.shields.io/badge/JavaScript-323330?style=for-the-badge&logo=javascript&logoColor=F7DF1E"  height="30px"/>
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+   <img src="https://img.shields.io/badge/Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white"  height="30px"/>
 
-### `npm test`
+   <img src="https://img.shields.io/badge/prettier-1A2C34?style=for-the-badge&logo=prettier&logoColor=F7BA3E"  height="30px"/>
+</p>
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+<center>
 
-### `npm run build`
+![MyWallet](screens/images/MyWallet.png)
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+</center>
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+$~$
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+---
 
-### `npm run eject`
+### :clipboard: Descrição
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+O projeto "MyWallet" é uma ferramenta que permite aos usuários gerenciarem suas finanças pessoais de forma descomplicada e eficiente. Com esta aplicação, os usuários podem registrar suas despesas e receitas e visualizar facilmente seu saldo monetário atual.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Neste web app, os usuários podem registrar seus gastos diários, como compras em supermercados, pagamentos de contas, gastos com lazer, etc. Eles também podem registrar suas receitas, como salários, rendas extras, entre outros. Facilitando assim, o controle financeiro pessoal, mantendo em apenas um local todas as suas transações financeiras, visando a praticidade para um melhor planejamento financeiro.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+#### 💰 [Acesse aqui](https://mywallet-gabrielatiago.vercel.app/)
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+---
 
-## Learn More
+### :rocket: Rodando o projeto localmente
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Este projeto foi iniciado com [Create React App](https://github.com/facebook/create-react-app), portanto, certifique-se de ter a última versão estável do [Node.js](https://nodejs.org/en/download) e [npm](https://www.npmjs.com/) rodando localmente.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Primeiro de tudo, inicialize o servidor backend, para isso siga as instruções do [link](https://github.com/GabrielaTiago/MyWallet-back).
 
-### Code Splitting
+Realizar o clone deste projeto, no terminal de sua máquina, utilize o [git](https://git-scm.com/) e insira o seguinte comando:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+```bash
+    git clone git@github.com:GabrielaTiago/MyWalllet-front.git
+```
 
-### Analyzing the Bundle Size
+Entre na pasta do projeto
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+```bash
+    cd MyWalllet-front
+```
 
-### Making a Progressive Web App
+Execute o seguinte comando para instalar as dependências.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+```bash
+    npm install
+```
 
-### Advanced Configuration
+Na raiz do projeto, adicione um arquivo **.env** com a seguinte informação
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+```bash
+    REACT_APP_BASE_URL=http://localhost:5000
+```
 
-### Deployment
+Depois de instalar as dependências, execute o comando para iniciar a aplicação.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+```bash
+    npm run start
+```
 
-### `npm run build` fails to minify
+A aplicação será iniciada em "http://localhost:3000" no seu navegador.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+---
+
+### 🎮 Usando
+
+<https://user-images.githubusercontent.com/77814822/224880264-941af7d0-eef9-4932-8b2d-58d387915806.mp4>
+
+---
+
+### :bulb: Reconhecimentos
+
+- [Badges para Github](https://github.com/alexandresanlim/Badges4-README.md-Profile#-database-)
+- [README Inspiração de README](https://gist.github.com/luanalessa/7f98467a5ed62d00dcbde67d4556a1e4#file-readme-md)
+- [Driven Education](https://www.driven.com.br)
+
+---
+
+### 👩‍🦱 Autora
+
+Gabriela Tiago de Araújo
+
+- email: gabrielatiagodearaujo@outlook.com
+- linkedin: <https://www.linkedin.com/in/gabrielatiago/>
+- portfolio: <https://gabrielatiago.vercel.app>
+
+$~$
+
+[🔝 De volta ao topo](#mywallet)
