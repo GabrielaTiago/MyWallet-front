@@ -2,7 +2,7 @@
 
 # <p align="center">MyWallet</p>
 
-#### <p align="center">Aplicação para registro financeiro</p>
+### <p align="center">Aplicação para registro financeiro</p>
 
 <p align="center">
    <img src="https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB"  height="30px"/>
@@ -32,7 +32,7 @@ O projeto "MyWallet" é uma ferramenta que permite aos usuários gerenciarem sua
 
 Neste web app, os usuários podem registrar seus gastos diários, como compras em supermercados, pagamentos de contas, gastos com lazer, etc. Eles também podem registrar suas receitas, como salários, rendas extras, entre outros. Facilitando assim, o controle financeiro pessoal, mantendo em apenas um local todas as suas transações financeiras, visando a praticidade para um melhor planejamento financeiro.
 
-#### 💰 [Acesse aqui](https://mywallet-gabrielatiago.vercel.app/)
+### :moneybag: [Acesse aqui](https://mywallet-gabrielatiago.vercel.app/)
 
 ---
 
@@ -40,7 +40,7 @@ Neste web app, os usuários podem registrar seus gastos diários, como compras e
 
 Este projeto foi iniciado com [Create React App](https://github.com/facebook/create-react-app), portanto, certifique-se de ter a última versão estável do [Node.js](https://nodejs.org/en/download) e [npm](https://www.npmjs.com/) rodando localmente.
 
-Primeiro de tudo, inicialize o servidor backend, para isso siga as instruções do [link](https://github.com/GabrielaTiago/MyWallet-back).
+:warning: Primeiro de tudo, inicialize o servidor backend, para isso siga as instruções do [link](https://github.com/GabrielaTiago/MyWallet-back).
 
 Realizar o clone deste projeto, no terminal de sua máquina, utilize o [git](https://git-scm.com/) e insira o seguinte comando:
 
