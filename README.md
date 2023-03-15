@@ -36,6 +36,19 @@ Neste web app, os usuários podem registrar seus gastos diários, como compras e
 
 ---
 
+### :bookmark_tabs: Características do projeto
+
+- Usuários podem se registrar inserindo seu nome, email e senha
+- Usuários podem efetuar o login utilizando seu email e senha
+- Usuários podem ver todas as suas transações registradas e seu saldo atual
+- Usuários podem registrar uma nova transação:
+  - De ganho
+  - De gasto
+- Usuário pode editar suas transações ao selecioná-las
+- Usário pode deletar suas transações
+
+---
+
 ### :rocket: Rodando o projeto localmente
 
 Este projeto foi iniciado com [Create React App](https://github.com/facebook/create-react-app), portanto, certifique-se de ter a última versão estável do [Node.js](https://nodejs.org/en/download) e [npm](https://www.npmjs.com/) rodando localmente.
